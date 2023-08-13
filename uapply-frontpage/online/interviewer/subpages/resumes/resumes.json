@@ -1,0 +1,6 @@
+{
+	"usingComponents": {
+		"selection": "../../components/selection/selection",
+		"select": "../../components/select/select"
+	}
+}

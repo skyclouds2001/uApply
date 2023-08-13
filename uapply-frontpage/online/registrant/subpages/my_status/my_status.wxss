@@ -1,0 +1,4 @@
+#noDep{
+	justify-content: center;
+	background-color: rgb(199, 104, 199);
+}

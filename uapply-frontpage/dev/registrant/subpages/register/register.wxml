@@ -1,0 +1,50 @@
+<import src="../../templates/alert/alert.wxml"></import>
+<view id="main_bg"></view>
+<form bind:submit="submit">
+	<view id="countainer">
+		<include src="/templates/info/info.wxml"></include>
+		<view class="module elastic" id="alert_registering" bindtap="should_know" bindtap="on_click_alert">
+			<image src="../../img/my_status_dec.png" mode="widthFix"></image>
+			<text>申报须知</text>
+			<view class="icon_o_module">
+				<image src="../../img/my_status_arrow.png" mode="widthFix"></image>
+			</view>
+		</view>
+		<view class="module" id="organization">
+			<view>
+				<view>选择意向组织</view>
+				<view style="margin-top: 0.2em" >
+					<select width="10em" value="{{organization[0].id}}" name="org_id" selected="(暂无组织)">
+						<selection wx:for-item="org" wx:for="{{organization}}" text="{{org.name}}" value="{{org.id}}"  wx:key="name" bindselect="on_select"></selection>
+					</select>
+				</view>
+			</view>
+			<view class="icon_o_module elastic">组</view>
+		</view>
+		<view class="module" id="department">
+			<view>
+				<view>选择意向部门</view>
+				<view style="margin-top: 0.2em" wx:for="{{organization}}" wx:key="id" wx:for-item="org" wx:if="{{current_organization === org.id}}">
+					<select name="dep_id"  width="10em" value="{{org.department[0].dep_id}}" selected="(暂无部门)">
+						<selection wx:for="{{org.department}}" wx:for-item="dep" text="{{dep.dep_name}}" value="{{dep.dep_id}}"  wx:key="id" ></selection>
+					</select>
+				</view>
+			</view>
+			<view class="icon_o_module elastic">部</view>
+		</view>
+		<button form-type="submit" class="elastic">提交申请</button>
+		<pop switch="{{pop}}" top="10%">
+			<view class="alert_should_know">
+				<view>
+					<view class="alert_title">{{title}}</view>
+					<view wx:for="{{alert_items}}" class="alert_should_know_item" wx:key="*this">{{item}}</view>
+					<view class="alert_confirm">
+						<button bindtap="on_click_confirm_alert" class="elastic">
+							<view>确定</view>
+						</button>
+					</view>
+				</view>
+			</view>
+		</pop>
+	</view>
+</form>

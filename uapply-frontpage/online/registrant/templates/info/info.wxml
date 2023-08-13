@@ -1,0 +1,12 @@
+<view wx:if="{{app.user.nickName}}" class="module elastic"
+id="after_login">
+	<view id="portrait">
+		<image src="{{app.user.avatarUrl}}">
+		</image>
+	</view>
+	<view id="info">
+		<view>昵称：{{app.user.nickName}}</view>
+		<view>ID：{{app.user.uid}}</view>
+	</view>
+	<image src="/img/self_info_dec.png" style="width: 193rpx; position: absolute; right: 0;" mode="widthFix" ></image>
+</view>

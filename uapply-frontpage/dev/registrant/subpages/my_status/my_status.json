@@ -1,0 +1,5 @@
+{
+	"usingComponents": {
+		"department": "/components/department/department"
+	}
+}

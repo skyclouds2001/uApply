@@ -1,0 +1,20 @@
+.module{
+	font-size: 36rpx;
+	margin-top: 1em;
+}
+
+.field{
+	display: inline-block;
+	width: 50%;
+	text-align: left;
+}
+
+.info_ctn{
+	padding-left: 48rpx;
+	width: 75%
+}
+
+.icon_o_module{
+	float: right;
+	margin-right: 1rem;
+}

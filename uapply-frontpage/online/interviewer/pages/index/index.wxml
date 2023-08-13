@@ -1,0 +1,48 @@
+<view id="main_ctn">
+        <!--main packgound-->
+        <view id="upper_ctn">
+            <view id="main_bg" >
+                <image src="../../img/main_bg.png" mode="widthFix" class="elastic"></image>
+            </view>
+            <!--modules-->
+            <form bind:submit="onsubmit">
+                <view id="modules">
+                    <!--after_login-->
+                    <view style="top: 200rpx" wx:if="{{app.user.nickName}}" animation="{{st.id_top}}" class="module">
+                        <include src="/templates/info/info.wxml"></include>
+                    </view>
+                    <!--before_login-->
+                    <view style="top: 200rpx" wx:if="{{!app.user.nickName}}" class="module elastic" id="before_login" bind:tap="on_click_get_id">
+                        <image src="../../img/login_arrow.png" mode="widthFix" id="login_arrow"></image>
+                        <text>登录获取ID</text>
+                        <image src="../../img/self_info_dec.png" mode="heightFix" id="login_dec"></image>
+                    </view>
+                    <view id="organization" class="module elastic" style="left: 100%" animation="{{st.md_org}}">
+                        <view>{{organization.org_name}}</view>
+                        <view class="icon_o_module elastic">组</view>
+                    </view>
+                    <view id="department" class="module elastic"  style="right: 100%" animation="{{st.md_dep}}">
+                        <view>{{organization.dep_name}}</view>
+                        <view class="icon_o_module elastic">部</view>
+                    </view>
+                    <view id="buttons">
+                        <button style="right: 100%" form-type="submit" class="elastic" animation="{{st.btn_left}}">招新数据</button>
+                        <button style="left: 100%" class="elastic" bind:tap="on_ent_pop" animation="{{st.btn_right}}">获取简历</button>
+                    </view>
+                </view>
+                <pop id="req_id" top="20%" switch="{{pop}}" delay="200" duration="100">
+                        <view class="pop_title">请输入用户ID：</view>
+                        <view id="uid">
+                            <input name="uid" type="number"></input>
+                        </view>
+                        <view class="pop_btn">
+                            <button bindtap="on_ext_pop" class="elastic">取消</button>
+                            <button bindtap="on_click_confirm" class="elastic" form-type="submit" data-submit="resumes">确定获取</button>
+                        </view>
+                    </pop>
+            </form>
+        </view>
+        <view id="launch" class="elastic">
+            — 青鸢工作室出品 —
+        </view>
+    </view>

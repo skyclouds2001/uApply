@@ -1,0 +1,13 @@
+<wxs src="./funcs.wxs" module="tools"></wxs>
+<view id="main_bg"></view>
+<view id="countainer">
+	<include src="/templates/info/info.wxml"></include>
+	<pop switch="{{pop}}" top="40%" ctn_background="transparent" bind:tap="on_pop">
+		<view wx:if="{{!department.length}}" id="noDep" class="module elastic" bind:tap="on_pop">
+			你还没有申请任何组织的部门
+		</view>
+	</pop>
+	<view wx:for="{{department}}" class="elastic" wx:key="dep_id" >
+		<department  background="{{tools.departsbg(index)}}" icon_bg="{{tools.iconbg(index)}}" indexplus="{{index + 1}}" dep="{{item}}" ></department>
+	</view>
+</view>

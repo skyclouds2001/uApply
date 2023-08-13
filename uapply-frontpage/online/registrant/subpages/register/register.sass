@@ -1,0 +1,50 @@
+@use "../../templates/alert/alert.scss"
+
+
+.icon_o_module
+  position: absolute
+  right: 64rpx
+  font-size: 54rpx
+  font-weight: normal
+
+
+#alert_registering
+  margin-top: 30rpx
+  justify-content: center
+  background-color: hsla(0, 100%, 82%, 0.94)
+  >image
+    position: absolute
+    left: 0
+    width: 156rpx
+    transform: rotateZ(200deg)
+  .icon_o_module
+    background-color: hsla(0, 95%, 75%, 1)
+    image
+      transform: rotateZ(45deg)
+      width: 48rpx
+
+#organization
+  background-color: hsla(250, 100%, 72%, 0.69)
+  .icon_o_module
+    background-color: hsla(254, 100%, 72%, 1)
+
+#department
+  background-color: hsla(205, 100%, 49%, 0.47)
+  .icon_o_module
+    background-color: hsla(205, 100%, 49%, 1)
+
+#department, #organization
+  font-size: 36rpx
+  margin-top: 21rpx
+  > view:first-of-type
+      margin-left: 131rpx
+
+form button
+  margin-top: 90rpx
+  width: 268rpx
+  background: rgba(255,255,255,0.64)
+  border: 2rpx solid #9160ff
+  border-radius: 12rpx
+  font-size: 36rpx
+  text-align: CENTER
+  color: #9160ff

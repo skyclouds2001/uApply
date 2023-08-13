@@ -1,0 +1,28 @@
+{
+    "pages": [
+        "pages/index/index"
+    ],
+    "subpackages": [
+        {
+            "root": "subpages",
+            "pages": [
+                "registors/registors",
+                "resumes/resumes"
+            ]
+        }
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#6C7BFF",
+        "navigationBarTitleText": "U报名-面试官端",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "default"
+    },
+    "style": "v2",
+    "usingComponents": {
+        "select": "/components/select/select",
+        "selection": "/components/selection/selection",
+        "pop": "/components/pop/pop"
+    },
+    "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,70 @@
+<import src="../../templates/alert/alert.wxml"></import>
+
+<view id="main_bg">
+	<image src="../../img/main_bg.png"></image>
+</view>
+<view id="dec">
+	<view></view>
+	<view></view>
+</view>
+<form bind:submit="submit">
+	<view id="my_resume_infos">
+		<view id="my_resume_title">我的简历</view>
+		<image src="../../img/amaze.png" mode="widthFix" bindtap="on_click_alert"></image>
+			<view class="field">
+				<text>姓名：</text>
+				<input placeholder="请输入您的姓名" name="name" value="{{resume.name}}"></input>
+			</view>
+			<view class="field" id="sex">
+				<text>性别：</text>
+				<select name="sex" width="4em" value="{{resume.sex}}" selected="N/A">
+					<selection wx:for="{{list}}" value="{{item.value}}" wx:key="value" text="{{item.text}}">
+					</selection>
+				</select>
+			</view>
+			<view class="field">
+				<text>学号：</text>
+				<input placeholder="请输入11位学号" type="number" name="student_num" value="{{resume.student_num}}"></input>
+			</view>
+			<view class="field">
+				<text>楼号：</text>
+				<input placeholder="请输入宿舍楼号" name="address_num" value="{{resume.address_num}}"></input>
+			</view>
+			<view class="field">
+				<text>大类：</text>
+				<input placeholder="请输入大类" name="major" value="{{resume.major}}"></input>
+			</view>
+			<view class="field" id="phone">
+				<text>手机号：</text>
+				<input placeholder="请输入常用手机号" type="number" name="phone_num" value="{{resume.phone_num}}"></input>
+			</view>
+			<view class="field">
+				<text>邮箱：</text>
+				<input placeholder="请输入常用邮箱" name="email" value="{{resume.email}}"></input>
+			</view>
+			<view id="individual_resume" class="field">
+				<view>个人简介</view>
+				<view id="resume">
+					<textarea placeholder="请输入个人简介，如个人爱好、性格、技能及实践经历等，字数上限200字" maxlength="200" name="intro" value="{{resume.intro}}"></textarea>
+				</view>
+			</view>
+	</view>
+	<button form-type="submit" id="save_resume">
+		<view>保存简历</view>
+	</button>
+</form>
+<pop switch="{{pop}}" top="10%">
+	<view id="alert" class="alert_should_know">
+		<view>
+			<view class="alert_title">{{title}}</view>
+			<view wx:for="{{alert_items}}" class="alert_should_know_item" wx:key="*this">
+				{{item}}
+			</view>
+			<view class="alert_confirm">
+				<button bindtap="on_click_confirm_alert" class="elastic">
+					<view>确定</view>
+				</button>
+			</view>
+		</view>
+	</view>
+</pop>

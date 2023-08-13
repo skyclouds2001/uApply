@@ -1,0 +1,42 @@
+<view id="main_ctn">
+	<view id="upper_ctn">
+		<view id="main_bg">
+			<image src="../../img/main_bg.png" mode="widthFix" class="elastic"></image>
+			</view>
+		<view id="modules">
+			<!--my resume-->
+			<view class="module elastic" id="my_resume" style="background-color: #8972ffb0;" bindtap="on_click_my_resume">
+				<text>我的简历</text>
+				<view class="icon_o_module">
+					<image src="../../img/my_resume.png" mode="widthFix"></image>
+				</view>
+			</view>
+			<!--register-->
+			<view class="module elastic" id="register" bindtap="on_click_register">
+				<text>我要申报</text>
+				<view class="icon_o_module">
+					<image src="../../img/register.png" mode="widthFix"></image>
+				</view>
+			</view>
+			<!--my_status-->
+			<view class="module elastic" id="my_status" bindtap="on_click_my_status">
+				<image src="../../img/my_status_dec.png" mode="widthFix"></image>
+				<text>我的状态</text>
+				<view class="icon_o_module">
+					<image src="../../img/my_status_arrow.png" mode="widthFix"></image>
+				</view>
+			</view>
+			<!--after_login-->
+			<include src="/templates/info/info.wxml"></include>
+			<!--before_login-->
+			<view wx:if="{{!app.user.nickName}}" class="module elastic" id="before_login" bindtap="on_click_get_id">
+				<image src="../../img/login_arrow.png" mode="widthFix" id="login_arrow"></image>
+				<text>登录获取ID</text>
+				<image src="../../img/self_info_dec.png" mode="heightFix" id="login_dec"></image>
+			</view>
+		</view>
+	</view>
+	<view id="launch">
+		— 青鸢工作室出品 —
+	</view>
+</view>

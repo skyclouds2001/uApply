@@ -1,0 +1,11 @@
+<view class="module" style="background-color: {{background}}">
+	<view class="info_ctn">
+		<view>
+			<view class="field">组织名：{{dep.org_name}}</view>
+			<view class="field">部门名称：{{dep.dep_name}}</view>
+		</view>
+		<view class="status">流程状态：{{
+			status}}</view>
+	</view>
+	<view class="icon_o_module" style="background-color: {{icon_bg}};">{{indexplus}}</view>
+</view>

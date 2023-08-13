@@ -1,0 +1,46 @@
+<view id="main_bg">
+
+</view>
+<view id="dec">
+	<view></view>
+	<view></view>
+</view>
+<view id="form_ctn">
+    <form bind:submit="submit">
+        <image src="/img/registors_bg.png" mode="widthFix" id="registors_bg" class="elastic" class="elastic"></image>
+        <view id="org_dep">
+            <view class="elastic">组织：{{org_name}}</view>
+            <view class="elastic">部门：{{dep_name}}</view>
+        </view>
+        <view id="datas">
+            <view class="row">
+                <view class="unit">
+                    <view>投递总数</view>
+                    <view class="elastic">{{have_emitted.total}}</view>
+                </view>
+                <view class="unit">
+                    <image src="/img/male.png" mode="widthFix" class="elastic"></image>
+                    <view class="elastic">{{have_emitted.male}}</view>
+                </view>
+                <view class="unit">
+                    <image src="/img/female.png" mode="widthFix" class="elastic"></image>
+                    <view class="elastic">{{have_emitted.female}}</view>
+                </view>
+            </view>
+            <view class="row">
+                <view class="unit">
+                    <view>通过总数</view>
+                    <view class="elastic">{{have_passed.total}}</view>
+                </view>
+                <view class="unit">
+                    <image src="/img/male.png" mode="widthFix" class="elastic"></image>
+                    <view class="elastic">{{have_passed.male}}</view>
+                </view>
+                <view class="unit">
+                    <image src="/img/female.png" mode="widthFix" class="elastic"></image>
+                    <view class="elastic">{{have_passed.female}}</view>
+                </view>
+            </view>
+        </view>
+    </form>
+</view>

@@ -1,0 +1,140 @@
+@use "sass:color" as color;
+
+page {
+  height: 100% ;
+}
+
+#modules {
+  margin-top: 21rpx;
+  transform: translateZ(100px);
+  background-color: white;
+}
+
+#main_bg image {
+  position: absolute;
+  top: 29rpx;
+}
+
+.icon_o_module{
+  font-size: 54rpx;
+  font-weight: normal;
+}
+
+#before_login {
+  background-color: #bcd742bf;
+  #login_arrow {
+    width: 96rpx;
+    margin-left: 188rpx;
+  }
+}
+
+#organization {
+  background-color: hsla(250, 100%, 72%, 0.69);
+
+  .icon_o_module {
+    background-color: hsla(254, 100%, 72%, 1);
+  }
+}
+
+#department {
+  background-color: hsla(205, 100%, 49%, 0.47);
+
+  .icon_o_module {
+    background-color: hsla(205, 100%, 49%, 1);
+  }
+}
+
+#department, #organization {
+  font-size: 36rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  >view:first-child{
+    position: absolute;
+    left: 6em
+  }
+  >view:not(:first-child){
+    position: absolute;
+    right: 2em
+  }
+}
+
+@function imp($rule){
+  @return #{$rule} + '!important'
+}
+
+$btn-bg: rgba(255,255,255,0.64);
+
+#buttons{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  button {
+    position: relative;
+    display: imp(inline-block);
+    margin: imp(0);
+    width: imp(286rpx);
+    background: imp($btn-bg);
+    border: imp('2rpx solid rgba(41,41,49,0.49)');
+    border-radius: imp(12rpx);
+    font-size: imp(36rpx);
+    font-weight: imp(lighter);
+    color: imp(rgba(37,37,65,0.49));
+    &:active{
+      background-color: imp(#9160ff);
+      color: imp(white)
+    }
+  }
+}
+
+#main_ctn{
+  min-height: 100vh;
+  #upper_ctn{
+    min-height: #{'calc(100vh - 56rpx)'};
+  }
+}
+
+#req_id{
+    >view{
+      margin: 0 auto;
+      box-shadow: 0 3rpx 6rpx 0  rgba(0,0,0,0.33);
+    }
+    .pop_title{
+      font-size: 34rpx;
+      width: 90%;
+      height: 2em;
+      margin: 0 auto;
+      text-align: LEFT;
+      padding-top: 1em;
+    }
+    .pop_btn {
+      padding-bottom: 37rpx;
+      display: flex;
+      justify-content: space-evenly;
+      $pp: rgba(145,96,255,0.64);
+      $qq: #ffffff;
+      >button{
+        width: 40%;
+      }
+      button{
+        font-size: 1em;
+        margin: 0;
+        background: $pp;
+        border: 2rpx solid #9160ff;
+        border-radius: 12rpx;
+        font-weight: normal;
+        text-align: CENTER;
+        color: $qq;
+        &:first-of-type{
+          color: $pp;
+          background-color: $qq;
+        }
+      }
+    }
+    #uid{
+      display: block;
+      width: 86%;
+      margin: 0 auto 1em;
+      height: 1.5em;
+      border: 1rpx solid rgba(0,0,0, 0.21);
+    }
+}

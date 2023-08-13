@@ -1,0 +1,96 @@
+
+#modules {
+	margin-top: 21rpx;
+	transform: translateZ(100px);
+	background-color: white;
+}
+
+#main_bg image{
+	position: absolute;
+	top: 82rpx;
+}
+
+#main_ctn {
+	min-height: 100vh;
+}
+#main_ctn #upper_ctn {
+	min-height: calc(100vh - 56rpx);
+}
+
+#my_resume, #register{
+	font-size: 36rpx;
+	display: inline-flex;
+}
+
+#my_resume{
+	width: 395rpx;
+	background-color: #0093fa78;
+}
+
+#my_resume image{
+	width: 60rpx
+}
+
+#my_resume text{
+	position: relative;
+	left: 61rpx;
+}
+
+#my_resume .icon_o_module{
+	position: relative;
+	left: 98rpx;
+	background-color: #9372ff;
+}
+
+#register{
+	width: 337rpx;
+	float: right;
+	background-color: #0093fa78;
+}
+
+#register image{
+	width: 64rpx;
+}
+#register text{
+	position: relative;
+	left: 36rpx;
+}
+#register .icon_o_module{
+	position: relative;
+	left: 55rpx;
+	background-color: #0093fa;
+}
+
+#my_status{
+	margin-top: 15rpx;
+	margin-bottom: 19rpx;
+	justify-content: center;
+	background-color: #ffa2a2f0;
+}
+
+#my_status > image{
+	position: absolute;
+	left: 0;
+	width: 156rpx;
+	transform: rotateZ(200deg);
+}
+
+#my_status .icon_o_module{
+	background-color: #fc8080;
+	position: absolute;
+	right: 140rpx;
+}
+
+#my_status .icon_o_module image{
+	transform: rotateZ(45deg);
+	width: 48rpx;
+}
+
+#before_login{
+	background-color: #bcd742bf;
+}
+
+#before_login #login_arrow{
+	width: 96rpx;
+	margin-left: 188rpx;
+}

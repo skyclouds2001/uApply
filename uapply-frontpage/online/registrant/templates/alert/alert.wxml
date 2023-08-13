@@ -1,0 +1,15 @@
+<template name="alert">
+	<view wx:if="{{alert}}" id="alert" class="alert_should_know">
+		<view>
+			<view class="alert_title">{{title}}</view>
+			<view wx:for="{{alert_items}}" class="alert_should_know_item" wx:key="*this">
+				{{item}}
+			</view>
+			<view class="alert_confirm">
+				<button bindtap="on_click_confirm_alert">
+					<view>确定</view>
+				</button>
+			</view>
+		</view>
+	</view>
+</template>

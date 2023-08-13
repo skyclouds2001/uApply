@@ -1,0 +1,71 @@
+#registors_bg {
+  display: block;
+  width: 500rpx;
+  margin: 0 auto;
+}
+
+#form_ctn {
+  width: 100%;
+  top: 68rpx;
+  position: absolute;
+}
+#form_ctn form {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 2em;
+  width: 673rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  font-size: 14rpx;
+  font-weight: normal;
+  text-align: CENTER;
+  color: #333333;
+  line-height: 20rpx;
+  box-shadow: 0 3rpx 6rpx 0 rgba(0, 0, 0, 0.15);
+}
+
+#dec view {
+  background-color: hsla(234deg, 100%, 71%, 0.91);
+  border-radius: 50%;
+  width: 156rpx;
+  height: 157rpx;
+  position: absolute;
+  top: 411.5rpx;
+}
+#dec view:first-of-type {
+  left: -78rpx;
+}
+#dec view:nth-of-type(2) {
+  right: -78rpx;
+}
+
+view {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+#org_dep view {
+  height: 1.5em;
+}
+
+#datas image {
+  width: 103rpx;
+}
+#datas .row {
+  border-top: 1rpx solid #797979;
+  width: 80%;
+  margin: 1em auto 0;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+#datas .row .unit {
+  display: inline-flex;
+  flex-direction: column;
+  align-content: center;
+  line-height: 103rpx;
+  vertical-align: middle;
+}
+#datas .row .unit > view:nth-child(2) {
+  color: #818181;
+}

@@ -1,0 +1,81 @@
+<view id="main_bg">
+	<image src="../../img/resumes_bg.png" mode="widthFix" class="elastic"></image>
+</view>
+<view id="dec">
+	<view></view>
+	<view></view>
+</view>
+<view id="ctn">
+	<pop top="4vh" background="transparent" ctn_background="white" switch="{{!leave}}" direction="left" width="90%" border_radius="12rpx">
+		<view class="resume_infos">
+		<view class="resume_title elastic">简历id：{{uid}}</view>
+		<view class="field">
+			<text>姓名：</text>
+			<view class="content">{{name}}</view>
+		</view>
+		<view class="field" id="sex">
+			<text>性别：</text>
+			<image src="{{sex === '男' ? '/img/male.png' : '/img/female.png'}}" mode="widthFix"></image>
+		</view>
+		<view class="field">
+			<text>学号：</text>
+			<view class="content">{{student_num}}</view>
+		</view>
+		<view class="field">
+			<text>楼号：</text>
+			<view class="content">{{address_num}}</view>
+		</view>
+		<view class="field">
+			<text>大类：</text>
+			<view class="content">{{major}}</view>
+		</view>
+		<view class="field" id="phone">
+			<text>手机号：</text>
+			<view class="content">{{phone_num}}</view>
+		</view>
+		<view class="field">
+			<text>邮箱：</text>
+			<view class="content">{{email}}</view>
+		</view>
+		<view class="individual_resume">
+			<view>个人简介</view>
+			<view class="resume">
+				<view>{{intro}}</view>
+			</view>
+		</view>
+	</view>
+	</pop>
+	<pop top="4vh" background="transparent" ctn_background="white" switch="{{leave}}" direction="right" width="90%" border_radius="12rpx">
+		<form bind:submit="submit">
+			<view class="resume_infos">
+			<view class="elastic resume_title">简历id：{{uid}}</view>
+			<view class="individual_resume">
+				<view>面试评价：</view>
+				<view class="resume">
+					<textarea name="eva" disabled="{{tag ? true : false}}" value="{{eva}}"></textarea>
+				</view>
+			</view>
+			<view class="individual_resume">
+				综合打分：
+				<radio-group name="mark" value="{{String(mark)}}">
+					<radio value="1" disabled="{{tag ? true: false}}" checked="{{mark === 1}}">A</radio>
+					<radio value="2" disabled="{{tag ? true: false}}" checked="{{mark === 2}}">B</radio>
+					<radio value="3" disabled="{{tag ? true: false}}" checked="{{mark === 3}}">C</radio>
+				</radio-group>
+			</view>
+			<view class="rbts">
+				<button class="elastic cbt rbt" bind:tap="back">返回简历</button>
+				<button form-type="submit" class="elastic cbt rbt" wx:if="{{!tag}}">提交面评</button>
+			</view>
+		</view>
+		</form>
+	</pop>
+	<pop top="85vh" background="rbga(0, 0, 0, 0)" direction="bottom" ctn_background="transparent" width="100%" timing_function="ease-out" switch="{{!leave}}">
+		<button id="give_commit" class="elastic cbt" wx:if="{{!tag}}" bind:tap="leave">
+			<view>开始评价</view>
+		</button>
+		<button id="get_commit" class="elastic cbt" wx:if="{{tag}}" bind:tap="get_commit">
+			<view>查看评价</view>
+		</button>
+	</pop>
+</view>

@@ -1,0 +1,29 @@
+{
+	"pages": [
+		"pages/index/index"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#6C7BFF",
+		"navigationBarTitleText": "U报名",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "default"
+	},
+	"subpackages": [
+		{
+			"root": "subpages",
+			"pages": [
+				"my_resume/my_resume",
+				"register/register",
+				"my_status/my_status"
+			]
+		}
+	],
+	"style": "v2",
+	"usingComponents": {
+		"select": "./components/select/select",
+		"selection": "./components/selection/selection",
+		"pop": "./components/pop/pop"
+	},
+	"sitemapLocation": "sitemap.json"
+}

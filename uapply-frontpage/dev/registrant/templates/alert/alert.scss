@@ -1,0 +1,35 @@
+.alert_should_know{
+  .alert_title{
+    font-size: 34rpx;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1em;
+    margin-bottom: 1.2em;
+    text-decoration-line: underline;
+    text-decoration-color: #9160ff;
+  }
+  .alert_should_know_item{
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+    font-size: 25rpx;
+    font-weight: bold;
+    text-align: left;
+    text-decoration-line: underline;
+  }
+  .alert_confirm {
+    padding-bottom: 37rpx;
+    button{
+      display: block;
+      margin: 0 auto;
+      width: 268rpx;
+      background: rgba(145,96,255,0.64);
+      border: 2rpx solid #9160ff;
+      border-radius: 12rpx;
+      font-size: 36rpx;
+      font-weight: normal;
+      text-align: CENTER;
+      color: #ffffff;
+    }
+  }
+}

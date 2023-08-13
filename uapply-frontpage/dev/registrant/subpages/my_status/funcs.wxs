@@ -1,0 +1,11 @@
+var departsbg = function(index){
+	return ["hsla(0, 100%, 82%, 0.94)", "hsla(250, 100%, 72%, 0.69)", "hsla(205, 100%, 49%, 0.47)"][index % 3]
+}
+var iconbg = function(index){
+	return ["hsla(0, 95%, 75%, 1)", "hsla(254, 100%, 72%, 1)", "hsla(205, 100%, 49%, 1)"][index % 3]
+}
+
+module.exports = {
+	departsbg : departsbg,
+	iconbg : iconbg
+}

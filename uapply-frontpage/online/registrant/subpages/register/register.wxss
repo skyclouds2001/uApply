@@ -1,0 +1,97 @@
+.alert_should_know .alert_title {
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1em;
+  margin-bottom: 1.2em;
+  text-decoration-line: underline;
+  text-decoration-color: #9160ff;
+}
+.alert_should_know .alert_should_know_item {
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  font-size: 25rpx;
+  font-weight: bold;
+  text-align: left;
+  text-decoration-line: underline;
+}
+.alert_should_know .alert_confirm {
+  padding-bottom: 37rpx;
+}
+.alert_should_know .alert_confirm button {
+  display: block;
+  margin: 0 auto;
+  width: 268rpx;
+  background: rgba(145, 96, 255, 0.64);
+  border: 2rpx solid #9160ff;
+  border-radius: 12rpx;
+  font-size: 36rpx;
+  font-weight: normal;
+  text-align: CENTER;
+  color: #ffffff;
+}
+.alert_should_know .alert_confirm button view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon_o_module {
+  position: absolute;
+  right: 64rpx;
+  font-size: 54rpx;
+  font-weight: normal;
+}
+
+#alert_registering {
+  margin-top: 30rpx;
+  justify-content: center;
+  background-color: hsla(0deg, 100%, 82%, 0.94);
+}
+#alert_registering > image {
+  position: absolute;
+  left: 0;
+  width: 156rpx;
+  transform: rotateZ(200deg);
+}
+#alert_registering .icon_o_module {
+  background-color: hsl(0deg, 95%, 75%);
+}
+#alert_registering .icon_o_module image {
+  transform: rotateZ(45deg);
+  width: 48rpx;
+}
+
+#organization {
+  background-color: hsla(250deg, 100%, 72%, 0.69);
+}
+#organization .icon_o_module {
+  background-color: hsl(254deg, 100%, 72%);
+}
+
+#department {
+  background-color: hsla(205deg, 100%, 49%, 0.47);
+}
+#department .icon_o_module {
+  background-color: hsl(205deg, 100%, 49%);
+}
+
+#department, #organization {
+  font-size: 36rpx;
+  margin-top: 21rpx;
+}
+#department > view:first-of-type, #organization > view:first-of-type {
+  margin-left: 131rpx;
+}
+
+form button {
+  margin-top: 90rpx;
+  width: 268rpx;
+  background: rgba(255, 255, 255, 0.64);
+  border: 2rpx solid #9160ff;
+  border-radius: 12rpx;
+  font-size: 36rpx;
+  text-align: CENTER;
+  color: #9160ff;
+}
