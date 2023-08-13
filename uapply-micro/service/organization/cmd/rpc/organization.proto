@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package organization;
+
+service organization {
+  // 获得所有正在招新的组织
+  rpc GetAllOrgTime (Empty) returns (TimeRsp);
+}
+
+message Empty {}
+
+message Time {
+  int32 orgid = 1;
+  string orgName = 2;
+  int64 start = 3;
+  int64 end = 4;
+}
+
+message TimeRsp {
+  repeated Time timeInfo = 1;
+}

@@ -1,0 +1,40 @@
+Name: dep-api
+Host: 0.0.0.0
+Port: 9004
+Mode: pro
+
+Mysql:
+  DataSource: root:qygzsroot@tcp(47.92.48.134:33075)/department_srv?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 47.92.48.134:65535
+    Pass:
+    Type: node
+Redis:
+  Host: 82.157.62.56:63799
+  Pass:
+  Type: node
+
+Auth:
+  AccessSecret: uapplyqingyuangongzuoshi-department
+  AccessExpire: 604800
+
+UserRpc:
+  Endpoints:
+    - user-rpc:9005
+
+InterRpc:
+  Endpoints:
+    - inter-rpc:9010
+
+Sms:
+  SecretId: AKIDd4GCrFMDn56qJWS9YgX7RUGkyvb091dy
+  SecretKey: 5uSjjSu65nFQKwINCj12mEQLzMSIr88s
+  Region: ap-guangzhou
+  AppId: "1400602613"
+  SignName: uapplycloud网
+  Templates:
+    First: "1553038"
+    Second: "1553039"
+    Enroll: "1257127"
+    Out: "1257104"

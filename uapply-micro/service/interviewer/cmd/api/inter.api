@@ -1,0 +1,113 @@
+syntax = "v1"
+
+service inter {
+	@doc "面试官登录"
+	@handler Login
+	get /inter/login/:code (LoginReq) returns (LoginRsp)
+}
+
+@server(
+	group : inter
+	jwt : Auth
+)
+
+service inter {
+	@doc "获取面试官的组织和部门"
+	@handler GetOrgDep
+	get /inter/gerorgdep returns (InterDepOrg)
+	
+	@doc "获取用户的信息"
+	@handler GetUserResume
+	post /inter/getresume/:num (GetReq) returns (CommonRsq)
+	
+	@doc "给用户打分评价"
+	@handler Evaluate
+	post /inter/evaluate/:num (MarkReq) returns (MsgRsq)
+	
+	@doc "查看评价"
+	@handler ViewEva
+	post /inter/vieweva/:num (GetReq) returns (EvaRsq)
+	
+	@doc "获取用户当前的轮次"
+	@handler GetUserTurn
+	post /inter/turn (TurnReq) returns (TurnResp)
+	
+	@doc "获取部门的招新数据"
+	@handler GetDepData
+	get /inter/get-data/:depId (DepDataReq) returns (DepDataResp)
+}
+
+type (
+	LoginReq {
+		Code string `path:"code"`
+	}
+
+	LoginRsp {
+		AccessToken  string `json:"accessToken,omitempty"`
+		AccessExpire int64  `json:"accessExpire,omitempty"`
+		RefreshAfter int64  `json:"refreshAfter,omitempty"`
+		UID          int    `json:"uid"`
+	}
+
+	GetReq {
+		Num   int `path:"num"`
+		DepId int `json:"depId"`
+		UID   int `json:"uid"`
+	}
+
+	CommonRsq {
+		Name       string `json:"name"`
+		Sex        string `json:"sex""`
+		StudentNum string `json:"student_num"`
+		AddressNum string `json:"address_num"`
+		Major      string `json:"major"`
+		PhoneNum   string `json:"phone_num"`
+		Email      string `json:"email"`
+		Intro      string `json:"intro"`
+		Tag        int    `json:"tag"`
+	}
+
+	MarkReq {
+		DepId int    `json:"depId"`
+		Num   int    `path:"num"`
+		UID   int    `json:"uid"`
+		Eva   string `json:"eva"`
+		Mark  int    `json:"mark"`
+	}
+
+	EvaRsq {
+		Eva  string `json:"eva"`
+		Mark int    `json:"mark"`
+	}
+
+	InterDepOrg {
+		Dep map[int]string `json:"depId"`
+		Org map[int]string `json:"orgId"`
+	}
+
+	MsgRsq {
+		Msg string `json:"msg"`
+	}
+
+	TurnReq {
+		Uid   int `json:"uid"`
+		DepId int `json:"depId"`
+	}
+	TurnResp {
+		Turn int `json:"turn"`
+	}
+
+	DepDataReq {
+		DepId int `path:"depId"`
+	}
+
+	DepDataResp {
+		DepId      int `json:"depId"`
+		Sum        int `json:"sum"`
+		SumMale    int `json:"sum_male"`
+		SumFemale  int `json:"sum_female"`
+		Pass       int `json:"pass"`
+		PassMale   int `json:"pass_male"`
+		PassFemale int `json:"pass_female"`
+	}
+)

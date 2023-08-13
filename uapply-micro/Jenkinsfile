@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+
+  stages {
+      stage('Dockerfile Build') {
+          steps{
+                 sh '/root/go/bin/goctl docker -go service/organization/cmd/api/org.go'
+                 script{
+                     env.image = sh(returnStdout: true, script: 'echo organization-api:latest').trim()
+                 }
+                 sh 'echo 镜像名称：${image}'
+                 sh 'docker build -t ${image} .'
+          }
+      }
+  }
+}

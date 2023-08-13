@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package inter;
+option go_package = "./inter";
+
+service Interviewer {
+  // 添加面试官接口
+  rpc addInter (AddReq) returns (Empty);
+  // 删除面试官
+  rpc DeleteInter (InterReq) returns (Empty);
+  // 获取所有面试官
+  rpc GetInters (IntersReq) returns (IntersResp);
+  // 修改面试官
+  rpc UpdateInter (UpdateInterReq) returns (Empty);
+}
+
+message AddReq {
+  int32 uid = 1;
+  string name = 2;
+  int32 depId = 3;
+  int32 orgId = 4;
+  string depName = 5;
+  string orgName = 6;
+}
+
+message InterReq{
+  int32 uid = 1;
+  int64 depid = 2;
+}
+
+message IntersReq{
+  int32 depId = 1;
+}
+
+message Empty{}
+
+message IntersResp{
+  repeated InterInfo infos = 1;
+}
+
+message InterInfo{
+  int64 id = 1;
+  int64 uid = 2;
+  string name = 3;
+}
+
+message UpdateInterReq{
+  int32 uid = 1 ;
+  string name = 2;
+  int32 depId = 3;
+}

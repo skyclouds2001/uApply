@@ -1,0 +1,28 @@
+Name: user
+Host: 0.0.0.0
+Port: 9003
+Mode: pro
+
+Mysql:
+  DataSource: root:1@tcp(47.92.48.134:33075)/user_srv?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 47.92.48.134:65535
+    Pass:
+    Type: node
+
+Auth:
+  AccessSecret: uapplyqingyuangongzuoshi-user
+  AccessExpire: 604800
+
+OrgRpc:
+  Endpoints:
+    - org-rpc:9002
+
+DepRpc:
+  Endpoints:
+    - dep-rpc:9001
+
+App:
+  Appid: wx364ff27dee0f6037
+  Secret: 2e9e9623d2c5d7cb652777c453d3f209

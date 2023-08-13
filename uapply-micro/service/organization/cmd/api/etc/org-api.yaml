@@ -1,0 +1,24 @@
+Name: org-api
+Host: 0.0.0.0
+Port: 9000
+Mode: pro
+
+Mysql:
+  DataSource: root:1@tcp(47.92.48.134:33075)/organization_srv?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 47.92.48.134:65535
+    Pass:
+    Type: node
+
+Auth:
+  AccessSecret: uapplyqingyuangongzuoshi-organization
+  AccessExpire: 604800
+
+DepRpc:
+  Endpoints:
+    - dep-rpc:9001
+
+UserRpc:
+  Endpoints:
+    - user-rpc:9005

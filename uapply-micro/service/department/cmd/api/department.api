@@ -1,0 +1,246 @@
+syntax = "v1"
+
+service department {
+	@doc "部门登录 yapi"
+	@handler login
+	post /dep/login (LoginReq) returns (CommonReply)
+}
+
+@server(
+	jwt: Auth
+	group: department
+)
+service department {
+	@doc "获取部门面试报名情况 yapi"
+	@handler GetRegData
+	get /dep/reg-data returns (DataRsp)
+	
+	@doc "用户通过第num论面试 yapi"
+	@handler Pass
+	post /dep/pass/:num (UidInfo) returns (Msg)
+	
+	@doc "用户被录取 yapi"
+	@handler Enroll
+	post /dep/enroll (EnrollReq) returns (Msg)
+	
+	@doc "用户被淘汰 yapi"
+	@handler Out
+	post /dep/out/:num (OutReq) returns (Msg)
+	
+	@doc "查看第1面所有用户的状态 yapi"
+	@handler GetUsers
+	post /dep/getusers-first returns (UsersInfo)
+	
+	@doc "查看第1面所有已面试用户的状态 yapi"
+	@handler GetUsersInterviewed
+	post /dep/getusers-first/interviewed returns (UsersInfo2)
+	
+	@doc "查看淘汰名单 yapi"
+	@handler GetOut
+	post /dep/getout returns (UsersInfo)
+	
+	@doc "查看录取名单 yapi"
+	@handler GetEnroll
+	post /dep/getenroll returns (UsersInfo)
+	
+	@doc "短信通知用户进行第num轮面试"
+	@handler Announce2Interview
+	post /dep/a2i/:num (AInterReq) returns (AinterRsp)
+	
+	@doc "添加面试官 yapi"
+	@handler ADDInterviewer
+	post /dep/add-inter (AddInterReq) returns (AddInterRsp)
+	
+	@doc "删除面试官"
+	@handler DeleteInter
+	get /dep/delete-Inter/:uid (InterdelReq) returns (Msg)
+	
+	@doc "获取部门下所有面试官"
+	@handler GetInters
+	get /dep/inters returns (InterInfosResp)
+	
+	@doc "修改面试官信息"
+	@handler UpdateInter
+	post /dep/updateInter (UpdateInterReq) returns (UpdateInterRsp)
+	
+	@doc "设置面试配置信息"
+	@handler SetInterConf
+	post /dep/set-conf/:turn (SetInterConfReq) returns (Msg)
+	
+	@doc "获取面试配置信息"
+	@handler GetInterConf
+	get /dep/get-conf/:turn (GetInterConfReq) returns (GetInterConfResp)
+	
+	@doc "手动添加录取的成员"
+	@handler AddEnroll
+	post /dep/add-enroll (AddEnrollReq) returns (Msg)
+	
+	@doc "手动删除成员的报名申请"
+	@handler DeleteEnrolled
+	delete /dep/del-enrolled (DeleteEnrolledReq) returns (Msg)
+	
+	@doc "发送面试通知"
+	@handler SendInterMsg
+	post /dep/send-inter-msg/:num (SendInterNoticeReq) returns (Msg)
+}
+
+type (
+	AddInterReq {
+		Uid  int    `json:"uid"`
+		Name string `json:"name"`
+	}
+	AddInterRsp {
+		Msg string `json:"msg"`
+	}
+
+	UpdateInterReq {
+		Uid  int    `json:"uid"`
+		Name string `json:"name"`
+	}
+	UpdateInterRsp {
+		Msg string `json:"msg"`
+	}
+
+	AInterReq {
+		Uid []int `json:"uid"`
+		Num int   `path:"num"`
+	}
+	AinterRsp {
+		Code int    `json:"code"`
+		Msg  string `json:"msg"`
+	}
+
+	EnrollReq {
+		Uid []int `json:"uid"`
+	}
+
+	UsersInfo {
+		Sum   int        `json:"sum"`
+		Users []UserInfo `json:"users"`
+	}
+	UserInfo {
+		Uid        int    `json:"uid"`
+		Name       string `json:"name"`
+		Sex        string `json:"sex"`
+		Major      string `json:"major"`
+		AddressNum string `json:"address_num"`
+		Phone      string `json:"phone"`
+		Email      string `json:"email"`
+		StudentNum string `json:"student_num"`
+		Intro      string `json:"intro"`
+		Status     int    `json:"status"`
+		Eva        string `json:"eva"`
+		Mark       int    `json:"mark"`
+	}
+	UsersInfo2 {
+		Sum   int         `json:"sum"`
+		Users []UserInfo2 `json:"users"`
+	}
+	UserInfo2 {
+		Uid          int    `json:"uid"`
+		Name         string `json:"name"`
+		Sex          string `json:"sex"`
+		Phone        string `json:"phone"`
+		Email        string `json:"email"`
+		StudentNum   string `json:"student_num"`
+		Intro        string `json:"intro"`
+		SecondStatus int    `json:"second_status"`
+		Eva          string `json:"eva"`
+		Mark         int    `json:"mark"`
+	}
+
+	Msg {
+		Msg string `json:"msg"`
+	}
+	UidInfo {
+		Num int   `path:"num"`
+		UID []int `json:"uid"`
+	}
+	DataRsp {
+		RegSum     int `json:"reg_sum"`
+		RegMale    int `json:"reg_male"`
+		RegFemale  int `json:"reg_female"`
+		PassSum    int `json:"pass_sum"`
+		PassMale   int `json:"pass_male"`
+		PassFemale int `json:"pass_female"`
+	}
+
+	LoginReq {
+		Account  string `json:"account"`
+		Password string `json:"password"`
+	}
+
+	CommonReply {
+		Id           int    `json:"id,omitempty"`
+		Name         string `json:"name,omitempty"`
+		OrgId        int    `json:"org_id,omitempty"`
+		OrgName      string `json:"org_name,omitempty"`
+		AccessToken  string `json:"accessToken,omitempty"`
+		AccessExpire int64  `json:"accessExpire,omitempty"`
+		RefreshAfter int64  `json:"refreshAfter,omitempty"`
+	}
+
+	InterReq {
+		Uid   int `path:"uid"`
+		DepId int `json:"depId,omitempty"`
+	}
+	InterdelReq {
+		Uid int `path:"uid"`
+	}
+
+	InterInfosResp {
+		Infos []InterInfo `json:"infos"`
+	}
+	InterInfo {
+		Id   int64  `json:"id"`
+		Uid  int64  `json:"uid"`
+		Name string `json:"name"`
+	}
+
+	SetInterConfReq {
+		Turn         int    `path:"turn"`
+		Start        int64  `json:"start"`
+		End          int64  `json:"end"`
+		InterAddress string `json:"inter_address"`
+		ContactPhone string `json:"contact_phone"`
+	}
+
+	GetInterConfReq {
+		Turn int `path:"turn"`
+	}
+
+	GetInterConfResp {
+		DepId        int64  `json:"dep_id"`
+		Turn         int    `json:"turn"`
+		Start        int64  `json:"start"`
+		End          int64  `json:"end"`
+		InterAddress string `json:"inter_address"`
+		ContactPhone string `json:"contact_phone"`
+	}
+
+	AddEnrollReq {
+		Uid        int64  `json:"uid"`
+		Name       string `json:"name" binding:"required"`
+		Sex        string `json:"sex,options=男|女"`
+		StudentNum string `json:"student_num" binding:"required"`
+		AddressNum string `json:"address_num,optional"`
+		Major      string `json:"major,optional"`
+		PhoneNum   string `json:"phone_num" binding:"required"`
+		Email      string `json:"email" binding:"required"`
+		Intro      string `json:"intro" binding:"required"`
+	}
+
+	DeleteEnrolledReq {
+		Uids []int `json:"uids"`
+	}
+
+	SendInterNoticeReq {
+		Num  int   `path:"num"`
+		Uids []int `json:"uids"`
+	}
+
+	OutReq {
+		Num int   `path:"num"`
+		Uid []int `json:"uid"`
+	}
+)

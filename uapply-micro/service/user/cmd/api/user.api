@@ -1,0 +1,133 @@
+syntax = "v1"
+
+service user {
+	@doc "获得所有正在招新的组织"
+	@handler GetOrgEnrolling
+	get /user/org-enrolling returns (EnrollingRsp)
+	
+	@doc "用户登录"
+	@handler UserLogin
+	get /user/login/:code (LoginReq) returns (LoginRsp)
+	
+	@doc "小程序规避审核 code，取值和小程序负责沟通"
+	@handler MiniCode
+	get /user/mini-code returns (MiniCodeResp)
+	
+	@doc "用户登录，统一认证登录"
+	@handler UserLoginXd
+	post /user/login-xd (XdLoginReq) returns (LoginRsp)
+}
+
+@server (
+	group : user
+	jwt : Auth
+)
+service user {
+	@doc "用户填写简历"
+	@handler AddResume
+	post /user/resume (AddResumeReq) returns (AddResumeRsp)
+	
+	@doc "获取选择的组织下的全部部门"
+	@handler GetDeps
+	get /user/org-deps/:id (GetDepsReq) returns (GetDepsRsp)
+	
+	@doc "报名"
+	@handler Register
+	post /user/register (RegReq) returns (RegRsp)
+	
+	@doc "用户查看自己的报名"
+	@handler GetRegister
+	get /user/register returns (GetRegRsp)
+	
+	@doc "查看用户是否填写简历了,如果填写了就返回简历内容，没有就返回false"
+	@handler CheckResume
+	get /user/check-resume returns (IfExist)
+}
+
+type (
+	IfExist {
+		Exist  bool         `json:"exist"`
+		Resume AddResumeReq `json:"resume,omitempty"`
+	}
+
+	GetRegRsp {
+		Rsp []ODInfo `json:"rsp"`
+	}
+	ODInfo {
+		DepID   int    `json:"dep_id"`
+		DepName string `json:"dep_name"`
+		OrgID   int    `json:"org_id"`
+		OrgName string `json:"org_name"`
+		First   int    `json:"first"`
+		Second  int    `json:"second"`
+		Final   int    `json:"final"`
+	}
+
+	RegReq {
+		OrgId int `json:"org_id"`
+		DepId int `json:"dep_id"`
+	}
+	RegRsp {
+		Msg string `json:"msg"`
+	}
+
+	GetDepsReq {
+		Id string `path:"id"`
+	}
+	GetDepsRsp {
+		Deps []DepInfo `json:"deps"`
+	}
+	DepInfo {
+		DepID   int    `json:"dep_id"`
+		DepName string `json:"dep_name"`
+	}
+
+	AddResumeReq {
+		Name       string `json:"name" binding:"required"`
+		Sex        string `json:"sex,options=男|女"`
+		StudentNum string `json:"student_num" binding:"required"`
+		AddressNum string `json:"address_num,optional"`
+		Major      string `json:"major,optional"`
+		PhoneNum   string `json:"phone_num" binding:"required"`
+		Email      string `json:"email" binding:"required"`
+		Intro      string `json:"intro" binding:"required"`
+	}
+	AddResumeRsp {
+		Msg string `json:"msg"`
+	}
+
+	EnrollingRsp {
+		Organizations []Enrolling `json:"organizations"`
+	}
+
+	Enrolling {
+		OrgId     int    `json:"org_id"`
+		OrgName   string `json:"org_name"`
+		StartTime int64  `json:"start_time"`
+		EndTime   int64  `json:"end_time"`
+	}
+
+	LoginReq {
+		Code string `path:"code"`
+	}
+
+	LoginRsp {
+		AccessToken  string `json:"accessToken,omitempty"`
+		AccessExpire int64  `json:"accessExpire,omitempty"`
+		RefreshAfter int64  `json:"refreshAfter,omitempty"`
+		UID          int    `json:"uid"`
+	}
+
+	ResumeOkResp {
+		IsOk bool `json:"is_ok"`
+	}
+
+	MiniCodeResp {
+		Code int `json:"code"`
+	}
+
+	XdLoginReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+)

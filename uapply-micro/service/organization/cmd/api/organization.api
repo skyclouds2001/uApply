@@ -1,0 +1,123 @@
+service org-api {
+	@doc "组织登录"
+	@handler login
+	post /org/login (LoginReq) returns (CommonReply)
+	
+	// 此接口为后端或管理员自用，无安全措施，请勿泄露
+	@doc "组织注册"
+	@handler Register
+	post /org/reg (RegReq) returns (CommonReply)
+}
+
+@server (
+	group : org
+	jwt : Auth
+)
+service org-api {
+	@doc "create dep"
+	@handler CreateDep
+	post /org/cre-dep (RegReq) returns (CommonReply)
+	
+	@doc "通过id获取某一个部门的信息,name，account，password"
+	@handler GetDep
+	get /org/dep/:id (IdReq) returns (DepRsp)
+	
+	@doc "获取组织下所有部门的信息"
+	@handler GetAllDep
+	get /org/deps () returns  (DepsRsp)
+	
+	@doc "组织编辑部门信息"
+	@handler UpdDep
+	patch /org/dep/:id (UdpReq) returns (DepRsp)
+	
+	@doc "组织删除部门"
+	@handler DelDep
+	delete /org/dep/:id (IdReq) returns (DepRsp)
+	
+	@doc "添加报名时间"
+	@handler AddTime
+	post /org/add-time (ATimeReq) returns (MsgRsp)
+	
+	@doc "组织招新数据"
+	@handler GetData
+	get /org/get-data () returns (GetOrgDataRsp)
+}
+
+@server(
+	group: org
+)
+service org-api {
+	@doc "根据 id 获取组织招新起止时间"
+	@handler GetEnrollTime
+	get /org/enroll-time/:id (IdReq) returns (TimeResp)
+}
+
+type (
+	GetOrgDataRsp {
+		Org Data   `json:"org"`
+		Dep []Data `json:"dep"`
+	}
+	Data {
+		ID     int    `json:"Id"`
+		Name   string `json:"name"`   // 名称
+		Sum    int    `json:"sum"`    // 总数
+		Pass   int    `json:"pass"`   // 通过人数
+		Male   int    `json:"male"`   // 通过的男生数量
+		Female int    `json:"female"` // 通过的女生数量
+	}
+
+	LoginReq {
+		Account  string `json:"account"`
+		Password string `json:"password"`
+	}
+
+	RegReq {
+		Name     string `json:"name"`
+		Account  string `json:"account"`
+		Password string `json:"password"`
+	}
+
+	DepRsp {
+		Name     string `json:"name,omitempty"`
+		Account  string `json:"account,omitempty"`
+		Password string `json:"password,omitempty"`
+		ID       int    `json:"id,omitempty"`
+	}
+
+	DepsRsp {
+		Departments []DepRsp `json:"departments"`
+	}
+
+	CommonReply {
+		Id           int64  `json:"id,omitempty"`
+		Name         string `json:"name,omitempty"`
+		AccessToken  string `json:"accessToken,omitempty"`
+		AccessExpire int64  `json:"accessExpire,omitempty"`
+		RefreshAfter int64  `json:"refreshAfter,omitempty"`
+	}
+
+	IdReq {
+		Id string `path:"id"`
+	}
+
+	UdpReq {
+		Id       string `path:"id"`
+		Name     string `json:"name,optional"`
+		Account  string `json:"account,optional"`
+		Password string `json:"password,optional"`
+	}
+
+	ATimeReq {
+		Start int64 `json:"start"`
+		End   int64 `json:"end"`
+	}
+
+	MsgRsp {
+		Msg string `json:"msg"`
+	}
+
+	TimeResp {
+		Start int64 `json:"start"`
+		End   int64 `json:"end"`
+	}
+)

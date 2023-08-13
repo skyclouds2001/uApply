@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package user;
+
+service user {
+  // 获取用户性别
+  rpc GetUserSex (GetSexReq) returns (GetSexRsp);
+  // 获取用户信息
+  rpc GetUsers (GetSexReq) returns (GetUsersRsp);
+  // 根据uid获取用户信息
+  rpc GetUserByUid(UserUid) returns (UserInfo);
+  // 保存简历，该接口会做参数校验
+  rpc SaveResume (UserInfo) returns (Empty);
+}
+
+message GetSexReq {
+  repeated int64 Ids = 1;
+}
+
+message GetSexRsp {
+  repeated string sexs = 1;
+}
+
+message GetUsersRsp {
+  repeated UserInfo users = 1;
+}
+
+message UserInfo {
+  int64 Uid = 9;
+  string Name = 1;
+  string sex = 2;
+  string StudentNum = 3;
+  string AddressNum = 4;
+  string Major = 5;
+  string PhoneNum = 6;
+  string Email = 7;
+  string Intro = 8;
+}
+
+message UserUid{
+  int64 uid = 1;
+}
+
+message Empty{
+}

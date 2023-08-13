@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package department;
+
+service department {
+  rpc createDep (CreReq) returns (CreInfoRsp);
+  rpc getDep (DepReq) returns (DepInfoRsp);
+  rpc getDeps (DepReq) returns (DepsInfoRsp);
+  rpc updDep (UdpReq) returns (DepInfoRsp);
+  rpc DelDep (DelReq) returns (DepInfoRsp);
+  rpc Register (RegReq) returns (Empty);
+  rpc GetRegister (RegReq) returns (GetRegRsp);
+  rpc GetRegByDepIds (RbdReq) returns (RbdRsp);
+  rpc GetRegisterMsg(UserUid) returns (RegInfo);
+  rpc MarkUser(MarkInfo) returns (Empty);
+}
+
+message Empty {}
+
+message UserUid{
+  int64 uid = 1;
+}
+message RbdReq {
+  repeated int32 ids = 1;
+}
+message RbdRsp {
+  repeated EachDep data = 1;
+}
+message EachDep {
+  repeated RegData dep = 1;
+}
+message RegData {
+  int32 uid = 1;
+  int32 first = 2;
+  int32 second = 3;
+  int32 final = 4;
+}
+message GetRegRsp {
+  repeated RegInfo rsp = 1;
+}
+message RegInfo {
+   int32 DepID = 1;
+  string DepName = 2;
+  int32    OrgID = 3;
+  string OrgName = 4;
+  int32 First = 5;
+  int32 Second = 6;
+  int32 Final = 7;
+  int32 FirstMark = 8;
+  string FirstEva = 9;
+  int32 SecondMark = 10;
+  string SecondEva = 11;
+}
+
+message MarkInfo{
+  int64 dep_id = 1;
+  int32 Mark = 2;
+  string Eva = 3;
+  int32 Uid = 4;
+  string MarkTag = 5;
+  string EvaTag = 6;
+}
+message RegReq {
+  int32 uid = 1;
+  int32 orgId = 2;
+  int32 depId = 3;
+}
+
+message CreReq {
+  string name = 1;
+  string account = 2;
+  string password = 3;
+  int32 orgId = 4;
+  string orgName = 5;
+}
+
+message UdpReq {
+  string name = 1;
+  string account = 2;
+  string password = 3;
+  int32 id = 4;
+  int32 orgId = 5;
+}
+
+message CreInfoRsp {
+  string name = 1;
+  int32 orgId = 2;
+}
+
+message DepReq {
+  repeated int32 id = 1;
+  int32 orgId = 2;
+}
+
+message DepInfoRsp {
+  int32 id = 1;
+  string name = 2;
+  string account = 3;
+  string password = 4;
+}
+
+message DepsInfoRsp {
+  repeated DepInfoRsp deps = 1;
+}
+
+message DelReq {
+  int32 orgId = 1;
+  int32 depId = 2;
+}

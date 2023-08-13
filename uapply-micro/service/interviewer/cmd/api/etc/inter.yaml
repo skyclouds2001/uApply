@@ -1,0 +1,28 @@
+Name: inter
+Host: 0.0.0.0
+Port: 9011
+
+Mysql:
+  DataSource: root:1@tcp(47.92.48.134:33075)/interviewer_srv?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+CacheRedis:
+  - Host: 47.92.48.134:65535
+    Pass:
+    Type: node
+
+
+Auth:
+  AccessSecret: uapplyqingyuangongzuoshi-interviewer
+  AccessExpire: 604800
+
+UserRpc:
+  Endpoints:
+    - user-rpc:9005
+
+DepRpc:
+  Endpoints:
+    - dep-rpc:9001
+
+App:
+  Appid: wxfa2ebbaa271c3f82
+  Secret: 823df925bbe14f2cf5bed1281502544e

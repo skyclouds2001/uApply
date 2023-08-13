@@ -1,0 +1,174 @@
+version: '3'
+
+services:
+  ########################################    业务   ########################################
+
+  #用户服务rpc
+  user-rpc:
+    image: cosmtrek/air:latest
+    container_name: user-rpc
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/user/cmd/rpc
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    networks:
+      - uapply_net
+
+  #组织服务rpc
+  org-rpc:
+    image: cosmtrek/air:latest
+    container_name: org-rpc
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/organization/cmd/rpc
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    networks:
+      - uapply_net
+
+  #部门服务rpc
+  dep-rpc:
+    image: cosmtrek/air:latest
+    container_name: dep-rpc
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/department/cmd/rpc
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    networks:
+      - uapply_net
+
+  #面试官服务rpc
+  inter-rpc:
+    image: cosmtrek/air:latest
+    container_name: inter-rpc
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/interviewer/cmd/rpc
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    networks:
+      - uapply_net
+
+  #组织服务api
+  org-api:
+    image: cosmtrek/air:latest
+    container_name: org-api
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/organization/cmd/api
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    ports:
+      - "9000:9000"
+    networks:
+      - uapply_net
+    depends_on:
+      - dep-rpc
+      - user-rpc
+  #部门服务api
+  dep-api:
+    image: cosmtrek/air:latest
+    container_name: dep-api
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/department/cmd/api
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    ports:
+      - "9004:9004"
+    networks:
+      - uapply_net
+    depends_on:
+      - user-rpc
+      - inter-rpc
+  #用户服务api
+  user-api:
+    image: cosmtrek/air:latest
+    container_name: user-api
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/user/cmd/api
+    volumes:
+      -  .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    ports:
+      - "9003:9003"
+    networks:
+      - uapply_net
+    depends_on:
+      - dep-rpc
+      - org-rpc
+
+  inter-api:
+    image: cosmtrek/air:latest
+    container_name: inter-api
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    working_dir: /app/uapply-micro/service/interviewer/cmd/api
+    volumes:
+      - .:/app/uapply-micro
+    privileged: true
+    restart: always
+    logging:
+      options:
+        max-size: "50m"
+    ports:
+      - "9011:9011"
+    networks:
+      - uapply_net
+
+networks:
+  uapply_net:
+    driver: bridge
