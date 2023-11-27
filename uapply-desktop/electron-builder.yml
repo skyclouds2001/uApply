@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: ls
+productName: uApply-desktop
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: ls
+  executableName: uApply-desktop
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
